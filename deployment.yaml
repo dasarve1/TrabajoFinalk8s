@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: trabajofinal-Deployment
+  name: trabajofinal-deployment
   labels:
-    app: trabajofinal-Deployment
+    app: trabajofinal-deployment
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: trabajofinal-Deployment
+      app: trabajofinal-deployment
   template:
     metadata:
       labels:
-        app: trabajofinal-Deployment
+        app: trabajofinal-deployment
     spec:
       containers:
-        - name: trabajofinal-Deployment
-          image: dasarve1/trabajofinal:1.0.0
+        - name: trabajofinal-deployment
+          image: dasarve1/trabajofinal:1.0.1
           ports:
             - containerPort: 8080
           env:
