@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trabajofinal-Deployment
+  labels:
+    app: trabajofinal-Deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: trabajofinal-Deployment
+  template:
+    metadata:
+      labels:
+        app: trabajofinal-Deployment
+    spec:
+      containers:
+        - name: trabajofinal-Deployment
+          image: dasarve1/trabajofinal:1.0.0
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Development"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 6
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            timeoutSeconds: 5
+            failureThreshold: 5
